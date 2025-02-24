@@ -1,13 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package diagramadeclases.base;
 
-/**
- *
- * @author ASUS
- */
+import java.util.Date;
+
+
 public class ManoDeObra {
-    
+    //PROPIEDADES
+ private Empleado trabajador;
+ private Proyecto proyecto;
+ private Date FechaInicio;
+ private Date FechaFin;
+ private String rol; 
+ 
+ public ManoDeObra(){
+     
+ }
+ 
+ public ManoDeObra(Empleado e, Proyecto p){
+   trabajador = e;
+   proyecto = p;
+ }
 }
