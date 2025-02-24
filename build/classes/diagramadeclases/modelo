@@ -1,0 +1,110 @@
+@startuml
+ 
+ class Empresa{
+ - String nit;
+ - String nombre;
+ - String tipo;
+ - String web;
+ - String telefono;
+ - String email;
+ - String direccion;
+ - List <Empleado> listaDeEmpleados;
+ - List <Proyecto> listaDeProyectos;
+ }
+ 
+ class Proyecto{
+ - String nombreClave
+ -String denominacion;
+ - Date fechaInicio;
+ - Date fechaFin;
+ - String estado;
+ - Empresa empresa;
+ - List <Empleado> listaDeEmpleados;
+ - Promotor empleadoPromotor;
+ - List <Tarea> listaDeTareas;
+
+ }
+ class Empleado{
+ # String dni;
+ # String nombre;
+ # String apellidos;
+ # String direccion;
+ # String telefono;
+ # String email;
+ # Date fechaContrato;
+ # Empresa empresa;
+ # List <Proyecto> listaDeProyectos;
+ # List <Tarea> listaDeTareas;
+
+ }
+ 
+ class Promotor{
+  - List <Proyecto> listaDeProyectos;
+
+ }
+ 
+ class Tarea {
+ - String descripcion;
+ - String tipo;
+ - Date fechaInicioEstimado;
+ - Date fechaInicioReal;
+ - int duracionEstimada;
+ - int duracionReal;
+ - List <Empleado> listaDeEmpleados;
+ - Proyecto proyecto;
+ - List <Documento> listaDeDocumentos;
+ 
+ }
+ 
+ class Documento {
+ -String codigo;
+ -String descripcion;
+ -String tipo;
+ -Tarea tarea;
+ - List<Version> listaDeVersiones;
+
+ 
+ }
+ 
+ class Version {
+ -Date fecha;
+ -String descripcion;
+ -File archivo;
+ - Documento documento;
+ }
+ 
+ class ManoDeObra {
+ - Empleado trabajador;
+ - Proyecto proyecto;
+ - Date FechaInicio;
+ - Date FechaFin;
+ - String rol;
+
+ }
+ 
+ class PlanDeTrabajo {
+ 
+ - Tarea tarea;
+ - Empleado trabajador;
+ - Date FechaInicio;
+ - Date FechaFin;
+ - String descripcion;
+ }
+ 
+ 
+ Empleado "*" -- "1" Empresa : Trabaja
+ Empleado <|-- Promotor : Es un 
+ Proyecto "*" -- "1" Empresa : Tiene
+ Proyecto "*" -- "1" Promotor : Promueve
+ Proyecto "1" -- "*" Tarea : Conformado
+ Tarea "1" -- "*" Documento : Genera
+ Documento "1" -- "*" Version : Tiene
+ Empleado "*" -- "*" Proyecto : Trabaja
+ (Empleado, Proyecto) .. ManoDeObra
+ Empleado "*" -- "*" Tarea : Realiza
+ (Empleado, Tarea) .. PlanDeTrabajo
+ 
+
+ 
+
+@enduml
